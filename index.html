@@ -6,13 +6,38 @@
   <meta name="description" content="PathLift: Depth-Conditioned Metric Lifting for Visual-Navigation Priors. CoRL 2026.">
   <title>PathLift | CoRL 2026</title>
   <style>
-    :root{--blue:#1673b8;--ink:#222;--muted:#5d6368;--line:#e3e6e8;--pale:#f6f8f9}
-    *{box-sizing:border-box}body{margin:0;background:white;color:var(--ink);font:16px/1.65 Arial,Helvetica,sans-serif}.container{width:min(960px,calc(100% - 36px));margin:0 auto}
-    .page-header{text-align:center;padding:48px 18px 28px}.page-header h1{font-size:clamp(30px,4.2vw,42px);line-height:1.2;margin:0 auto 16px;font-weight:700;max-width:900px;letter-spacing:-.035em}.venue{font-size:20px;font-weight:700;margin:8px 0 20px}.authors{font-size:17px;font-weight:600;margin:0 0 11px}.authors a{color:var(--blue);text-decoration:none}.authors a:hover{text-decoration:underline}.authors sup{font-size:11px}.affiliation{font-size:15px;color:var(--muted);margin:0 0 16px}.affiliation a{color:var(--blue);text-decoration:none;font-weight:600}.affiliation a:hover{text-decoration:underline}.links{font-size:15px;font-weight:600}.links a{color:var(--blue);text-decoration:none}.links a:hover{text-decoration:underline}.links .sep{padding:0 8px;color:#888}
-    .video{margin:6px auto 38px;background:#111}.video video{width:100%;display:block;aspect-ratio:16/9;max-height:550px;object-fit:contain}.video-caption,.caption{font-size:13px;color:#666;text-align:center;margin:8px auto 28px}
-    section{margin:0 0 40px}h2{text-align:center;font-size:27px;line-height:1.25;margin:28px 0 17px;color:#171717}h3{text-align:center;font-size:19px;line-height:1.35;margin:25px 0 12px}p{margin:12px 0;color:#333}.figure{margin:22px auto 28px;text-align:center}.figure img{display:block;max-width:100%;height:auto;margin:0 auto}.figure .wide{width:100%}.figure .pipeline{width:100%}.figure figcaption{max-width:850px;margin:9px auto 0;color:#666;font-size:13px;line-height:1.5}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:23px 0 28px}.step{background:var(--pale);border:1px solid var(--line);border-radius:6px;padding:17px 18px}.step .number{display:block;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.step strong{display:block;font-size:16px;margin:5px 0}.step p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}.table-wrap{overflow-x:auto;margin:16px 0 4px}.results{border-collapse:collapse;width:100%;font-size:14px}.results th,.results td{border:1px solid #d8dde1;padding:9px 11px;text-align:center;white-space:nowrap}.results th{background:#f3f5f6;font-weight:700}.results td:first-child,.results th:first-child{text-align:left}.results .ours{font-weight:700;color:#155f93;background:#f1f8fc}.caption{text-align:left;margin:7px 0 20px}.callout{background:var(--pale);border-left:4px solid var(--blue);padding:13px 17px;margin:16px 0}.callout strong{color:#155f93}.bib{background:#f5f6f7;border:1px solid #e0e3e5;border-radius:4px;padding:16px;white-space:pre-wrap;overflow:auto;font:13px/1.6 Menlo,Consolas,monospace}.footer{border-top:1px solid var(--line);padding:23px 0 35px;color:#777;font-size:13px;text-align:center;margin-top:24px}
-    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:34px 5px 23px}.authors{font-size:15px}.venue{font-size:18px}h2{font-size:24px}.results{font-size:12px}.results th,.results td{padding:7px 8px}.video{margin-bottom:28px}.steps{grid-template-columns:1fr;gap:9px}.step{padding:14px 16px}}
+    :root{--ink:#222;--muted:#555;--blue:#176fae;--line:#ddd}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:var(--ink);font:16px/1.65 Arial,Helvetica,sans-serif}
+    .container{width:min(940px,calc(100% - 36px));margin:0 auto}
+    .page-header{text-align:center;padding:44px 14px 25px}
+    h1{max-width:900px;margin:0 auto 14px;font-size:clamp(30px,4.2vw,41px);line-height:1.2;letter-spacing:-.025em}
+    .venue{margin:8px 0 18px;font-size:19px;font-weight:700}
+    .authors{margin:0 0 8px;font-size:17px;font-weight:600}
+    .authors a{color:var(--blue);text-decoration:none}.authors a:hover{text-decoration:underline}
+    .authors sup{font-size:11px}
+    .affiliation{margin:0 0 15px;color:var(--muted);font-size:14px}
+    .paper-link{font-weight:600}.paper-link a{color:var(--blue);text-decoration:none}.paper-link a:hover{text-decoration:underline}
+    .video{margin:7px auto 30px;background:#111}.video video{display:block;width:100%;max-height:540px;aspect-ratio:16/9;object-fit:contain}
+    .video-caption,figcaption{margin:8px auto 25px;text-align:center;color:#666;font-size:13px;line-height:1.5}
+    section{margin:0 0 37px}
+    h2{margin:24px 0 14px;text-align:center;font-size:26px;line-height:1.3;color:#111}
+    h3{margin:24px 0 10px;text-align:center;font-size:18px;line-height:1.35}
+    p{margin:12px 0;color:#333}
+    figure{margin:21px auto 26px;text-align:center}
+    figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+    .real-robot-figure img{width:100%}.pipeline-figure img{width:100%}
+    figcaption{max-width:850px;margin-bottom:0}
+    .table-wrap{overflow-x:auto;margin:15px 0 4px}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{padding:8px 10px;border:1px solid #d8d8d8;text-align:center;white-space:nowrap}
+    th{background:#f4f4f4;font-weight:700}
+    td:first-child,th:first-child{text-align:left}
+    .ours{font-weight:700}
+    .table-caption{margin:7px 0 20px;color:#666;font-size:13px}
+    .reference{padding:13px 15px;border:1px solid var(--line);background:#fafafa;font:13px/1.6 Menlo,Consolas,monospace;white-space:pre-wrap}
+    footer{margin-top:25px;padding:20px 0 32px;border-top:1px solid var(--line);text-align:center;color:#777;font-size:13px}
+    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:32px 4px 21px}.authors{font-size:15px}h2{font-size:23px}table{font-size:12px}th,td{padding:7px 7px}}
   </style>
 </head>
 <body>
@@ -21,8 +46,8 @@
       <h1>PathLift: Depth-Conditioned Metric Lifting for Visual-Navigation Priors</h1>
       <div class="venue">CoRL 2026</div>
       <p class="authors"><a href="mailto:shinkansan@snu.ac.kr">Gwanjun Shin</a><sup>1</sup>, <a href="mailto:hyeongaa@snu.ac.kr">Hyeongseok Suh</a><sup>2</sup>, <a href="mailto:jjhm2910@snu.ac.kr">Hongmo Jung</a><sup>2</sup>, <a href="mailto:jongwoo.lim@snu.ac.kr">Jongwoo Lim</a><sup>2,†</sup></p>
-      <p class="affiliation"><sup>1</sup>Interdisciplinary Program in Artificial Intelligence, Seoul National University<br><sup>2</sup>Department of Mechanical Engineering, Seoul National University<br><a href="https://rvlab.snu.ac.kr/" target="_blank" rel="noopener noreferrer">SNU Robot Vision Lab ↗</a></p>
-      <div class="links"><a href="corl2026_visualnav_pathlift_camera_ready.pdf">Paper</a><span class="sep">|</span><a href="https://rvlab.snu.ac.kr/" target="_blank" rel="noopener noreferrer">Lab homepage</a></div>
+      <p class="affiliation"><sup>1</sup>Interdisciplinary Program in Artificial Intelligence, Seoul National University<br><sup>2</sup>Department of Mechanical Engineering, Seoul National University<br>† Corresponding author</p>
+      <div class="paper-link"><a href="corl2026_visualnav_pathlift_camera_ready.pdf">Paper</a></div>
     </header>
 
     <figure class="video">
@@ -31,78 +56,68 @@
         Your browser does not support video playback.
       </video>
     </figure>
-    <p class="video-caption">PathLift in simulation and on a real wheeled robot.</p>
+    <p class="video-caption">PathLift demonstrations in simulation and on a real robot.</p>
 
     <article>
       <section id="overview">
         <h2>Overview</h2>
-        <p>A visual-navigation policy gives a robot a path shape, but not the real-world distances along that path. A single scale factor cannot adjust individual waypoints when the robot approaches an obstacle or needs to pass around it.</p>
-        <p><b>PathLift turns that path suggestion into a metric route the robot can follow.</b> It reads the policy's waypoints together with measured depth, then adjusts each point's distance and sideways position. It works with RGB-D, stereo, or LiDAR depth and leaves the original navigation policy unchanged.</p>
-        <div class="steps" aria-label="How PathLift works">
-          <div class="step"><span class="number">01 · Policy</span><strong>Suggest a path</strong><p>The navigation model says which way to go, but its waypoints have no real-world scale.</p></div>
-          <div class="step"><span class="number">02 · Depth</span><strong>Read the space ahead</strong><p>A depth sensor measures nearby surfaces and shows where the robot can move.</p></div>
-          <div class="step"><span class="number">03 · PathLift</span><strong>Make the route actionable</strong><p>PathLift adjusts the waypoints into a metric path that steers through observed free space.</p></div>
-        </div>
-        <figure class="figure">
-          <img class="wide" src="assets/real-robot-comparison.png" alt="Real robot examples comparing a constant-scale path and the PathLift path around obstacles">
-          <figcaption>Real-robot examples: a constant-scale lift collides with obstacles, while PathLift uses depth to adjust the path around them. RGB views and bird's-eye-view trajectories are shown.</figcaption>
+        <p>Generalist visual-navigation policies tell a robot which direction to go but not how far. A separate lifting step is needed at deployment to convert their unitless trajectory into a metric path that a controller can track. Existing scalar lifters apply uniform scaling that misses per-waypoint corrections, while in-policy approaches that inject monocular depth inherit prediction errors near obstacles and at close range.</p>
+        <p>We present <b>PathLift</b>, a per-waypoint depth-conditioned adapter for pretrained visual-navigation policies. It consumes an explicit, sensor-grade depth source (RGB-D, stereo, or projected LiDAR) and fits per-waypoint magnitude and lateral residuals to a canonicalized prior. PathLift improves closed-loop navigation across visual-navigation policies in simulation and on a real wheeled robot with stereo and LiDAR depth. It produces a depth-feasible metric path in a single feed-forward pass, without test-time optimization.</p>
+        <figure class="real-robot-figure">
+          <img src="assets/real-robot-comparison.png" alt="Real-robot examples comparing a constant-scale trajectory with a PathLift trajectory around obstacles">
+          <figcaption>Real-robot examples. A constant-scale lift leads into obstacles; PathLift uses depth to adjust the trajectory. Each example shows the camera image and corresponding bird's-eye view.</figcaption>
         </figure>
       </section>
 
       <section id="method">
         <h2>Method</h2>
-        <p>Each waypoint can move farther or closer and shift sideways while staying near the policy's suggested path. During training, PathLift learns from safe candidate routes that fit both the observed free space and expert navigation examples. This teaches it to respect the policy's intent while correcting unsafe or poorly scaled parts of the route.</p>
-        <p>At run time, the adapter predicts the complete metric route in one pass; it does not search through candidate routes. The network has 4.3 million parameters.</p>
-        <figure class="figure">
-          <img class="pipeline" src="assets/pathlift-pipeline.png" alt="PathLift inference pipeline from a visual-navigation policy and depth observation to a metric path">
-          <figcaption>PathLift inference pipeline. An off-the-shelf policy supplies a unitless path; depth is reprojected into the policy camera frame; PathLift predicts the metric path in body coordinates.</figcaption>
+        <p>The adapter receives a canonicalized waypoint sequence and a depth frame projected into the policy camera frame. At each waypoint, it predicts a magnitude and a lateral residual. Training targets are selected from depth-feasible, intent-preserving candidate paths using the expert trajectory. At deployment, the network directly predicts the metric path.</p>
+        <figure class="pipeline-figure">
+          <img src="assets/pathlift-pipeline.png" alt="PathLift pipeline: a visual-navigation policy and depth observation are processed to produce a metric trajectory">
+          <figcaption>PathLift inference pipeline. The policy path and reprojected depth are inputs to PathLiftNet; the output is a metric trajectory in body coordinates.</figcaption>
         </figure>
       </section>
 
       <section id="results">
         <h2>Results</h2>
-        <p>We evaluate PathLift in closed-loop simulation on 50 unseen HM3D scenes (2,000 trials per row) and on a real wheeled robot. One adapter checkpoint is evaluated across regression-based and generative navigation priors.</p>
-        <h3>Simulation · HM3D</h3>
-        <div class="table-wrap"><table class="results">
-          <thead><tr><th>Visual prior</th><th>Prior only<br>SR (%)</th><th>With PathLift<br>SR (%)</th><th>Relative SR gain</th><th>Adapter time</th></tr></thead>
+        <h3>Closed-loop simulation on HM3D</h3>
+        <p>We evaluate 2,000 trials across 50 unseen scenes. The same PathLift adapter is used with all four navigation priors.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Visual-navigation prior</th><th>Prior only<br>SR (%)</th><th>With PathLift<br>SR (%)</th><th>Relative gain</th><th>Adapter (ms)</th></tr></thead>
           <tbody>
-            <tr><td>GNM</td><td>17.40</td><td class="ours">25.60</td><td>+47.1%</td><td>5.3 ms</td></tr>
-            <tr><td>ViNT</td><td>25.00</td><td class="ours">33.70</td><td>+34.8%</td><td>5.2 ms</td></tr>
-            <tr><td>NoMaD</td><td>17.45</td><td class="ours">29.80</td><td>+70.8%</td><td>5.3 ms</td></tr>
-            <tr><td>FlowNav</td><td>16.00</td><td class="ours">28.45</td><td>+77.8%</td><td>5.3 ms</td></tr>
+            <tr><td>GNM</td><td>17.40</td><td class="ours">25.60</td><td>+47.1%</td><td>5.3</td></tr>
+            <tr><td>ViNT</td><td>25.00</td><td class="ours">33.70</td><td>+34.8%</td><td>5.2</td></tr>
+            <tr><td>NoMaD</td><td>17.45</td><td class="ours">29.80</td><td>+70.8%</td><td>5.3</td></tr>
+            <tr><td>FlowNav</td><td>16.00</td><td class="ours">28.45</td><td>+77.8%</td><td>5.3</td></tr>
           </tbody>
         </table></div>
-        <p class="caption">Success rate and adapter overhead from the closed-loop benchmark. Adapter timing is measured on an NVIDIA RTX 4090.</p>
+        <p class="table-caption">Success rate and adapter inference time. Latency is measured on an NVIDIA RTX 4090.</p>
 
-        <h3>Real robot · Image-goal navigation</h3>
-        <p>Across three indoor corridors, stereo-depth PathLift improves success for every evaluated prior. Its mean success is 86.7%, compared with 48.9% for the fixed-scale baselines. Projected LiDAR provides comparable results, with 80.0% aggregated success across the evaluated trials.</p>
-        <div class="table-wrap"><table class="results">
-          <thead><tr><th>Prior</th><th>Fixed-scale SR</th><th>PathLift + stereo SR</th></tr></thead>
-          <tbody><tr><td>GNM</td><td>46.67%</td><td class="ours">86.67%</td></tr><tr><td>ViNT</td><td>66.67%</td><td class="ours">93.33%</td></tr><tr><td>NoMaD</td><td>33.33%</td><td class="ours">80.00%</td></tr></tbody>
+        <h3>Image-goal navigation on a real robot</h3>
+        <p>Across three indoor corridors, stereo-depth PathLift achieves a mean success rate of 86.7%, compared with 48.9% for the fixed-scale baselines. With projected LiDAR, aggregated success is 80.0%.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Prior</th><th>Fixed scale<br>SR (%)</th><th>PathLift + stereo<br>SR (%)</th></tr></thead>
+          <tbody><tr><td>GNM</td><td>46.67</td><td class="ours">86.67</td></tr><tr><td>ViNT</td><td>66.67</td><td class="ours">93.33</td></tr><tr><td>NoMaD</td><td>33.33</td><td class="ours">80.00</td></tr></tbody>
         </table></div>
-        <p class="caption">15 trials per method. The same PathLift weights are used across priors and depth sources.</p>
+        <p class="table-caption">15 trials per method across environments E1–E3.</p>
 
-        <h3>Real robot · Goal-free exploration</h3>
-        <p>In 10 no-goal trials, PathLift extends NoMaD's mean distance before first collision from 7.86 m to 11.67 m (+48%). The maximum distance increases from 13.38 m to 22.50 m.</p>
+        <h3>Goal-free exploration</h3>
+        <p>In 10 trials, PathLift increases NoMaD's mean distance before first collision from 7.86 m to 11.67 m. The maximum distance increases from 13.38 m to 22.50 m.</p>
 
-        <h3>Composing with local planners</h3>
-        <p>PathLift supplies a metric goal for a downstream local planner. On an 800-trial HM3D subset, PathLift followed by MPPI reaches 38.00% success and 34.57% SPL, improving on MPPI alone (34.12% success, 29.11% SPL).</p>
-        <div class="table-wrap"><table class="results">
-          <thead><tr><th>Method</th><th>SR (%)</th><th>SPL (%)</th><th>Stage time</th></tr></thead>
-          <tbody><tr><td>PathLift</td><td>29.62</td><td>28.20</td><td>5.6 ms</td></tr><tr><td>MPPI</td><td>34.12</td><td>29.11</td><td>21.3 ms</td></tr><tr><td>PathLift → MPPI</td><td class="ours">38.00</td><td class="ours">34.57</td><td>26.9 ms</td></tr></tbody>
+        <h3>Composition with local planners</h3>
+        <p>On an 800-trial HM3D subset, PathLift followed by MPPI achieves 38.00% success and 34.57% SPL, compared with 34.12% success and 29.11% SPL for MPPI alone.</p>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Method</th><th>SR (%)</th><th>SPL (%)</th><th>Stage time (ms)</th></tr></thead>
+          <tbody><tr><td>PathLift</td><td>29.62</td><td>28.20</td><td>5.6</td></tr><tr><td>MPPI</td><td>34.12</td><td>29.11</td><td>21.3</td></tr><tr><td>PathLift → MPPI</td><td class="ours">38.00</td><td class="ours">34.57</td><td>26.9</td></tr></tbody>
         </table></div>
-
       </section>
 
-      <section id="citation">
+      <section id="reference">
         <h2>Reference</h2>
-        <p>PathLift was accepted to the 10th Conference on Robot Learning (CoRL 2026), Austin, Texas, USA.</p>
-        <pre class="bib">Gwanjun Shin, Hyeongseok Suh, Hongmo Jung, and Jongwoo Lim.
-PathLift: Depth-Conditioned Metric Lifting for Visual-Navigation Priors.
-In Proceedings of the 10th Conference on Robot Learning (CoRL), 2026.</pre>
+        <p>Gwanjun Shin, Hyeongseok Suh, Hongmo Jung, and Jongwoo Lim. “PathLift: Depth-Conditioned Metric Lifting for Visual-Navigation Priors.” In <i>Proceedings of the 10th Conference on Robot Learning (CoRL)</i>, 2026.</p>
       </section>
     </article>
-    <footer class="footer">PathLift · CoRL 2026</footer>
+    <footer>PathLift · CoRL 2026</footer>
   </main>
 </body>
 </html>
