@@ -10,9 +10,9 @@
     *{box-sizing:border-box}body{margin:0;background:white;color:var(--ink);font:16px/1.65 Arial,Helvetica,sans-serif}.container{width:min(960px,calc(100% - 36px));margin:0 auto}
     .page-header{text-align:center;padding:48px 18px 28px}.page-header h1{font-size:clamp(30px,4.2vw,42px);line-height:1.2;margin:0 auto 16px;font-weight:700;max-width:900px;letter-spacing:-.035em}.venue{font-size:20px;font-weight:700;margin:8px 0 20px}.authors{font-size:17px;font-weight:600;margin:0 0 11px}.authors a{color:var(--blue);text-decoration:none}.authors a:hover{text-decoration:underline}.authors sup{font-size:11px}.affiliation{font-size:15px;color:var(--muted);margin:0 0 16px}.links{font-size:15px;font-weight:600}.links a{color:var(--blue);text-decoration:none}.links a:hover{text-decoration:underline}.links .sep{padding:0 8px;color:#888}
     .video{margin:6px auto 38px;background:#111}.video video{width:100%;display:block;aspect-ratio:16/9;max-height:550px;object-fit:contain}.video-caption,.caption{font-size:13px;color:#666;text-align:center;margin:8px auto 28px}
-    section{margin:0 0 40px}h2{text-align:center;font-size:27px;line-height:1.25;margin:28px 0 17px;color:#171717}h3{text-align:center;font-size:19px;line-height:1.35;margin:25px 0 12px}p{margin:12px 0;color:#333}.figure{margin:22px auto 28px;text-align:center}.figure img{display:block;max-width:100%;height:auto;margin:0 auto}.figure .wide{width:100%}.figure .pipeline{width:100%}.figure .method{width:min(850px,100%)}.figure figcaption{max-width:850px;margin:9px auto 0;color:#666;font-size:13px;line-height:1.5}
-    .table-wrap{overflow-x:auto;margin:16px 0 4px}.results{border-collapse:collapse;width:100%;font-size:14px}.results th,.results td{border:1px solid #d8dde1;padding:9px 11px;text-align:center;white-space:nowrap}.results th{background:#f3f5f6;font-weight:700}.results td:first-child,.results th:first-child{text-align:left}.results .ours{font-weight:700;color:#155f93;background:#f1f8fc}.caption{text-align:left;margin:7px 0 20px}.callout{background:var(--pale);border-left:4px solid var(--blue);padding:13px 17px;margin:16px 0}.callout strong{color:#155f93}.bib{background:#f5f6f7;border:1px solid #e0e3e5;border-radius:4px;padding:16px;white-space:pre-wrap;overflow:auto;font:13px/1.6 Menlo,Consolas,monospace}.footer{border-top:1px solid var(--line);padding:23px 0 35px;color:#777;font-size:13px;text-align:center;margin-top:24px}
-    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:34px 5px 23px}.authors{font-size:15px}.venue{font-size:18px}h2{font-size:24px}.results{font-size:12px}.results th,.results td{padding:7px 8px}.video{margin-bottom:28px}}
+    section{margin:0 0 40px}h2{text-align:center;font-size:27px;line-height:1.25;margin:28px 0 17px;color:#171717}h3{text-align:center;font-size:19px;line-height:1.35;margin:25px 0 12px}p{margin:12px 0;color:#333}.figure{margin:22px auto 28px;text-align:center}.figure img{display:block;max-width:100%;height:auto;margin:0 auto}.figure .wide{width:100%}.figure .pipeline{width:100%}.figure figcaption{max-width:850px;margin:9px auto 0;color:#666;font-size:13px;line-height:1.5}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:23px 0 28px}.step{background:var(--pale);border:1px solid var(--line);border-radius:6px;padding:17px 18px}.step .number{display:block;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.step strong{display:block;font-size:16px;margin:5px 0}.step p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}.table-wrap{overflow-x:auto;margin:16px 0 4px}.results{border-collapse:collapse;width:100%;font-size:14px}.results th,.results td{border:1px solid #d8dde1;padding:9px 11px;text-align:center;white-space:nowrap}.results th{background:#f3f5f6;font-weight:700}.results td:first-child,.results th:first-child{text-align:left}.results .ours{font-weight:700;color:#155f93;background:#f1f8fc}.caption{text-align:left;margin:7px 0 20px}.callout{background:var(--pale);border-left:4px solid var(--blue);padding:13px 17px;margin:16px 0}.callout strong{color:#155f93}.bib{background:#f5f6f7;border:1px solid #e0e3e5;border-radius:4px;padding:16px;white-space:pre-wrap;overflow:auto;font:13px/1.6 Menlo,Consolas,monospace}.footer{border-top:1px solid var(--line);padding:23px 0 35px;color:#777;font-size:13px;text-align:center;margin-top:24px}
+    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:34px 5px 23px}.authors{font-size:15px}.venue{font-size:18px}h2{font-size:24px}.results{font-size:12px}.results th,.results td{padding:7px 8px}.video{margin-bottom:28px}.steps{grid-template-columns:1fr;gap:9px}.step{padding:14px 16px}}
   </style>
 </head>
 <body>
@@ -36,8 +36,13 @@
     <article>
       <section id="overview">
         <h2>Overview</h2>
-        <p>Generalist visual-navigation policies tell a robot which direction to go, but not how far. Their normalized trajectories capture useful path shape, yet a controller needs a metric trajectory. Existing scalar lifters apply one scale to every waypoint, while depth added inside a policy ties the geometric pathway to that policy and can inherit monocular-depth errors near obstacles.</p>
-        <p><b>PathLift</b> is a per-waypoint depth-conditioned adapter for pretrained visual-navigation policies. It combines a canonicalized policy path with an explicit sensor-grade depth source, then predicts a metric body-frame path by adjusting each waypoint's magnitude and lateral position. A shared camera-frame interface accepts RGB-D, stereo, or projected LiDAR depth. At deployment, one feed-forward pass produces a depth-feasible path without test-time optimization.</p>
+        <p>A visual-navigation policy gives a robot a path shape, but not the real-world distances along that path. A single scale factor cannot adjust individual waypoints when the robot approaches an obstacle or needs to pass around it.</p>
+        <p><b>PathLift turns that path suggestion into a metric route the robot can follow.</b> It reads the policy's waypoints together with measured depth, then adjusts each point's distance and sideways position. It works with RGB-D, stereo, or LiDAR depth and leaves the original navigation policy unchanged.</p>
+        <div class="steps" aria-label="How PathLift works">
+          <div class="step"><span class="number">01 · Policy</span><strong>Suggest a path</strong><p>The navigation model says which way to go, but its waypoints have no real-world scale.</p></div>
+          <div class="step"><span class="number">02 · Depth</span><strong>Read the space ahead</strong><p>A depth sensor measures nearby surfaces and shows where the robot can move.</p></div>
+          <div class="step"><span class="number">03 · PathLift</span><strong>Make the route actionable</strong><p>PathLift adjusts the waypoints into a metric path that steers through observed free space.</p></div>
+        </div>
         <figure class="figure">
           <img class="wide" src="assets/real-robot-comparison.png" alt="Real robot examples comparing a constant-scale path and the PathLift path around obstacles">
           <figcaption>Real-robot examples: a constant-scale lift collides with obstacles, while PathLift uses depth to adjust the path around them. RGB views and bird's-eye-view trajectories are shown.</figcaption>
@@ -46,15 +51,11 @@
 
       <section id="method">
         <h2>Method</h2>
-        <p>PathLift represents each output waypoint as a scaled prior waypoint plus a lateral residual. During training, the target is selected from a family of 679 intent-preserving candidate lifts: the depth-feasible candidate closest to the expert path is used as supervision. Feasibility checks enforce clearance, zero obstacle penetration, sufficient depth-observed coverage, and a bounded deviation from the prior.</p>
-        <p>The candidate family is used to construct training targets only. At inference, a 4.3M-parameter adapter consumes the canonicalized prior and reprojected depth and directly predicts the lifted trajectory.</p>
+        <p>Each waypoint can move farther or closer and shift sideways while staying near the policy's suggested path. During training, PathLift learns from safe candidate routes that fit both the observed free space and expert navigation examples. This teaches it to respect the policy's intent while correcting unsafe or poorly scaled parts of the route.</p>
+        <p>At run time, the adapter predicts the complete metric route in one pass; it does not search through candidate routes. The network has 4.3 million parameters.</p>
         <figure class="figure">
           <img class="pipeline" src="assets/pathlift-pipeline.png" alt="PathLift inference pipeline from a visual-navigation policy and depth observation to a metric path">
           <figcaption>PathLift inference pipeline. An off-the-shelf policy supplies a unitless path; depth is reprojected into the policy camera frame; PathLift predicts the metric path in body coordinates.</figcaption>
-        </figure>
-        <figure class="figure">
-          <img class="method" src="assets/lift-candidate-selection.png" alt="Candidate metric lifts and depth-admissible trajectories on Habitat and OpenLORIS examples">
-          <figcaption>Training-time target selection. From the candidate lift family, PathLift selects a depth-admissible path close to the expert trajectory while preserving the policy's intent.</figcaption>
         </figure>
       </section>
 
@@ -91,13 +92,6 @@
           <tbody><tr><td>PathLift</td><td>29.62</td><td>28.20</td><td>5.6 ms</td></tr><tr><td>MPPI</td><td>34.12</td><td>29.11</td><td>21.3 ms</td></tr><tr><td>PathLift → MPPI</td><td class="ours">38.00</td><td class="ours">34.57</td><td>26.9 ms</td></tr></tbody>
         </table></div>
 
-        <h3>Ablations · NoMaD prior</h3>
-        <p>The ablations show that depth input and admissible-family supervision are central to performance. Per-waypoint corrections add 2.0 percentage points over the retrained scalar-head variant.</p>
-        <div class="table-wrap"><table class="results">
-          <thead><tr><th>Variant</th><th>Success rate (%)</th></tr></thead>
-          <tbody><tr><td>PathLift</td><td class="ours">29.62</td></tr><tr><td>Single per-trajectory scalar</td><td>27.62</td></tr><tr><td>No depth input</td><td>6.50</td></tr><tr><td>CNN depth encoder</td><td>14.25</td></tr><tr><td>Direct expert-path supervision</td><td>14.88</td></tr><tr><td>Fixed-scale NoMaD</td><td>19.88</td></tr></tbody>
-        </table></div>
-        <p class="caption">800-trial HM3D subset. Each ablation removes or changes one component of the default configuration.</p>
       </section>
 
       <section id="citation">
