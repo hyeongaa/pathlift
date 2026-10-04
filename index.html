@@ -28,6 +28,8 @@
     p{margin:12px 0;color:#333}
     figure{margin:21px auto 26px;text-align:center}
     figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+    article figure img{cursor:zoom-in}
+    article figure img:hover{filter:brightness(.97)}
     .real-robot-figure img{width:100%}.pipeline-figure img{width:100%}
     figcaption{max-width:850px;margin-bottom:0}
     .table-wrap{overflow-x:auto;margin:15px 0 4px}
@@ -39,7 +41,13 @@
     .table-caption{margin:7px 0 20px;color:#666;font-size:13px}
     .reference{padding:13px 15px;border:1px solid var(--line);background:#fafafa;font:13px/1.6 Menlo,Consolas,monospace;white-space:pre-wrap}
     footer{margin-top:25px;padding:20px 0 32px;border-top:1px solid var(--line);text-align:center;color:#777;font-size:13px}
-    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:38px 4px 23px}.authors{font-size:14px}.video{width:calc(100vw - 24px);padding:5px}h2{font-size:23px}table{font-size:12px}th,td{padding:7px 7px}}
+    .lightbox{width:min(1200px,calc(100vw - 32px));max-width:none;max-height:94vh;padding:46px 18px 18px;border:0;border-radius:8px;background:#17191c;color:#fff;box-shadow:0 20px 70px #0008;overflow:auto}
+    .lightbox::backdrop{background:rgba(12,14,17,.84);backdrop-filter:blur(3px)}
+    .lightbox img{display:block;max-width:100%;max-height:82vh;width:auto;height:auto;margin:auto;object-fit:contain}
+    .lightbox figcaption{margin:12px auto 0;color:#e1e3e6}
+    .lightbox-close{position:absolute;top:9px;right:12px;width:32px;height:32px;border:0;border-radius:50%;background:#ffffff1c;color:white;font-size:23px;line-height:1;cursor:pointer}
+    .lightbox-close:hover{background:#ffffff35}
+    @media(max-width:640px){.container{width:calc(100% - 24px)}.page-header{padding:38px 4px 23px}.authors{font-size:14px}.video{width:calc(100vw - 24px);padding:5px}h2{font-size:23px}table{font-size:12px}th,td{padding:7px 7px}.lightbox{padding:44px 10px 12px}}
   </style>
 </head>
 <body>
@@ -123,5 +131,40 @@
     </article>
     <footer>PathLift · CoRL 2026</footer>
   </main>
+  <dialog class="lightbox" id="image-lightbox" aria-label="Expanded image">
+    <button class="lightbox-close" type="button" aria-label="Close expanded image">×</button>
+    <img alt="">
+    <figcaption></figcaption>
+  </dialog>
+  <script>
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('figcaption');
+    const closeLightbox = () => lightbox.close();
+
+    document.querySelectorAll('article figure img').forEach((image) => {
+      image.tabIndex = 0;
+      image.setAttribute('role', 'button');
+      image.setAttribute('aria-label', `Enlarge image: ${image.alt}`);
+      const openLightbox = () => {
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.closest('figure').querySelector('figcaption')?.textContent || '';
+        lightbox.showModal();
+      };
+      image.addEventListener('click', openLightbox);
+      image.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox();
+        }
+      });
+    });
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+  </script>
 </body>
 </html>
